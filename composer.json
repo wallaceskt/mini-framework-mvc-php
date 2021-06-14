@@ -1,0 +1,10 @@
+{
+    "name": "dablios/mini-framework-mvc-php",
+    "description": "Projeto para estudo de MVC com PHP.",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    }
+}

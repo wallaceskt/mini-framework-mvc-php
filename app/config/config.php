@@ -1,4 +1,5 @@
 <?php
+// define() Define uma constante e deve ser maiúscula
 define('BASE', '/mini-framework-mvc-php/');
 
 define('UNSET_URI_COUNT', 1);

@@ -1,18 +1,5 @@
 <?php
-$this->get('/', function() {
-
-    echo "HOME!!!";
-
-});
-
-$this->get('/home/', function() {
-
-    echo "Estou na HOME!!!";
-
-});
-
-$this->get('/about/test', function() {
-
-    echo "Estou na ABOUT/TEST!!!";
-
-});
+$this->get('/', 'PagesController@home');
+$this->get('/cep', 'PagesController@cep');
+$this->get('/quem-somos', 'PagesController@quemSomos');
+$this->get('/contato', 'PagesController@contato');

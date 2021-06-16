@@ -1,7 +1,9 @@
 {
     "name": "dablios/mini-framework-mvc-php",
     "description": "Projeto para estudo de MVC com PHP.",
-    "require": {},
+    "require": {
+        "twig/twig": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "app\\": "app/"

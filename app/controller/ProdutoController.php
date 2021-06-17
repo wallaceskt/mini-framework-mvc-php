@@ -35,7 +35,24 @@ class ProdutoController extends Controller {
      */
     public function insert() {
 
-        dd(Input::post('txtDescricao'));//$this->load('produto/novo');
+        $params = $this->getInput();
+        dd($params);
+
+    }
+    
+    /**
+     * Retorna os dados do formulário em uma classe padrão stdObject
+     *
+     * @return object
+     */
+    private function getInput() {
+
+        return (object) [
+            'id' => Input::get('id', FILTER_SANITIZE_NUMBER_INT),
+            'nome' => Input::post('txtNome'),
+            'imagem' => Input::post('txtImagem'),
+            'texto' => Input::post('txtTexto')
+        ];
 
     }
     

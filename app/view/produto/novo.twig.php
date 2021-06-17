@@ -21,8 +21,8 @@
         </div>
 
         <div class="mt-3">
-            <label for="txtDescricao">Descrição</label>
-            <textarea id="txtDescricao" name="txtDescricao" class="form-control" placeholder="Descrição do produto" rows="5" required></textarea>
+            <label for="txtTexto">Descrição</label>
+            <textarea id="txtTexto" name="txtTexto" class="form-control" placeholder="Descrição do produto" rows="5" required></textarea>
         </div>
 
         <div class="mt-3 text-end">

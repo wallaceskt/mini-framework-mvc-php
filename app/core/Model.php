@@ -12,6 +12,7 @@ use PDO;
  */
 class Model {
 
+    // Atributos
     private static $connection;
     private $debug;
     private $server;
@@ -19,6 +20,7 @@ class Model {
     private $password;
     private $database;
 
+    // Método construtor
     public function __construct() {
 
         $this->debug = true;
@@ -46,13 +48,11 @@ class Model {
         
             return self::$connection;
         
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
         
-            if ($this->debug) {
+            if ($this->debug)
                 echo "<b>Error on getConnection(): </b>" . $ex->getMessage() . "<br>";
-            }
         
-            die();
             return null;
         
         }
@@ -63,7 +63,7 @@ class Model {
     * Unset connection
     * @return void
     */
-    public function Disconnect() {
+    public function disconnect() {
 
         //$this->connection = null;
         self::$connection = null;
@@ -74,7 +74,7 @@ class Model {
     * Return the last id of insert statement
     * @return int
     */    
-    public function GetLastID() {
+    public function getLastID() {
     
         return $this->getConnection()->lastInsertId();
     
@@ -84,7 +84,7 @@ class Model {
     * Start one database transaction
     * @return void
     */   
-    public function BeginTransaction() {
+    public function beginTransaction() {
 
         return $this->getConnection()->beginTransaction();
     
@@ -94,7 +94,7 @@ class Model {
     * Commit changes on opened transaction
     * @return void
     */   
-    public function Commit() {
+    public function commit() {
     
         return $this->getConnection()->commit();
     
@@ -104,7 +104,7 @@ class Model {
     * Roolback changes on opened transaction
     * @return void
     */   
-    public function Rollback() {
+    public function rollback() {
     
         return $this->getConnection()->rollBack();
     
@@ -116,7 +116,7 @@ class Model {
     * @param array $params the array of parameters (array(":col1" => "val1",":col2" => "val2"))
     * @return one position array for the result of query
     */   
-    public function ExecuteQueryOneRow($sql, $params = null) {
+    public function executeQueryOneRow($sql, $params = null) {
     
         try {
     
@@ -124,7 +124,7 @@ class Model {
             $stmt->execute($params);
             return $stmt->fetch(PDO::FETCH_ASSOC);
     
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
     
             if ($this->debug) {
                 echo "<b>Error on ExecuteQueryOneRow():</b> " . $ex->getMessage() . "<br>";
@@ -135,7 +135,6 @@ class Model {
                 ;
             }
     
-            die();
             return null;
     
         }
@@ -148,7 +147,7 @@ class Model {
     * @param array $params the array of parameters (array(":col1" => "val1",":col2" => "val2"))
     * @return array for the result of query
     */   
-    public function ExecuteQuery($sql, $params = null) {
+    public function executeQuery($sql, $params = null) {
     
         try {
     
@@ -156,7 +155,7 @@ class Model {
             $stmt->execute($params);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
     
             if ($this->debug) {
                 echo "<b>Error on ExecuteQuery():</b> " . $ex->getMessage() . "<br>";
@@ -164,10 +163,9 @@ class Model {
                
                 echo "<br><b>Parameters: </b>";
                 print_r($params) . "<br>";
-                ;
+
             }
     
-            die();
             return null;
     
         }
@@ -180,25 +178,24 @@ class Model {
     * @param array $params the array of parameters (array(":col1" => "val1",":col2" => "val2"))
     * @return boolean
     */   
-    public function ExecuteNonQuery($sql, $params = null) {
+    public function executeNonQuery($sql, $params = null) {
     
         try {
     
             $stmt = $this->getConnection()->prepare($sql);
             return $stmt->execute($params);
     
-        } catch (PDOException $ex) {
+        } catch (\PDOException $ex) {
     
             if ($this->debug) {
                 echo "<b>Error on ExecuteNonQuery():</b> " . $ex->getMessage() . "<br>";
                 echo "<br><b>SQL: </b>" . $sql . "<br>";
-                ;
+
                 echo "<br><b>Parameters: </b>";
                 print_r($params) . "<br>";
-                ;
+
             }
     
-            die();
             return false;
     
         }

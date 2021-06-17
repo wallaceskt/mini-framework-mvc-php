@@ -11,9 +11,9 @@ class PagesController extends Controller {
 
     }
 
-    public function cep() {
+    public function produto() {
 
-        $this->load('cep/main');
+        $this->load('produto/main');
 
     }
 

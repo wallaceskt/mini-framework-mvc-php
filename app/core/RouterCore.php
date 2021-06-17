@@ -22,6 +22,12 @@ class RouterCore {
         $this->method = $_SERVER['REQUEST_METHOD'];
         $uri = $_SERVER['REQUEST_URI'];
 
+        if (strpos($uri, '?')) {
+
+            $uri = mb_substr($uri, 0, strpos($uri, '?'));
+        
+        }
+
         $ex = explode('/', $uri);
         $uri = $this->normalizeURI($ex);
 
@@ -37,6 +43,15 @@ class RouterCore {
     }
 
     private function get($router, $call) {
+
+        $this->getArr[] = [
+            'router' => $router,
+            'call' => $call
+        ];
+
+    }
+
+    private function post($router, $call) {
 
         $this->getArr[] = [
             'router' => $router,
@@ -129,7 +144,30 @@ class RouterCore {
 
     private function executePost() {
 
-        //
+        foreach ($this->getArr as $get) {
+
+            $r = substr($get['router'], 1);
+
+            if (substr($r, -1) == '/') {
+
+                $r = substr($r, 0, -1);
+
+            }
+            
+            if ($r == $this->uri) {
+
+                if (is_callable($get['call'])) {
+
+                    $get['call']();
+                    return;
+
+                }
+
+                $this->executeController($get['call']);
+            
+            }
+
+        }
 
     }
 

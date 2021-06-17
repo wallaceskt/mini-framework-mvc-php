@@ -67,6 +67,24 @@ class ProdutoModel {
     }
     
     /**
+     * Exclui um registro na base de dados através do ID do produto
+     *
+     * @param  Object $params Lista com os parâmetros a serem inseridos
+     * @return bool True em caso de sucesso e false em caso de erro
+     */
+    public function delete(Object $params) {
+
+        $sql = 'DELETE FROM produto WHERE id = :id';
+
+        $params = [
+            ':id' => $params->id
+        ];
+
+        return $this->pdo->executeNonQuery($sql, $params);
+
+    }
+    
+    /**
      * Retorna todos os registros da base de dados em ordem ascendente por nome
      *
      * @return array[object] Retorna um array de objetos

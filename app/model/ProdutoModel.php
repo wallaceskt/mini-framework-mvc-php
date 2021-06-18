@@ -38,7 +38,7 @@ class ProdutoModel {
             ':t' => $params->texto
         ];
 
-        if ($this->pdo->executeNonQuery($sql, $params))
+        if (!$this->pdo->executeNonQuery($sql, $params))
             return -1;
 
         return $this->pdo->getLastID();

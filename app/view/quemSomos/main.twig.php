@@ -3,7 +3,7 @@
 {% block title %}Quem Somos - Mini Framework{% endblock %}
 
 {% block body %}
-<div class="max-width center-screen bg-white padding">
+<div class="max-width center-screen bg-white padding mt-5">
     
     <h1>Quem Somos</h1>
 
